@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import BackgroundImage from '../../assets/images/background2-blur.png';
-import LoginImage from '../../assets/images/molde7.fw.png';
+import LoginImage from '../../assets/images/form-image.png';
 import { propsFormLoginSignUp } from ".";
 
 export const MainContainer = styled.div`
@@ -13,7 +13,7 @@ export const MainContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 10px 0;
+  /* padding: 10px 0; */
 `
 export const MainContent = styled.div`
     width: 300px;
@@ -166,12 +166,12 @@ export const LoginRegisterText = styled.h1`
     margin: 30px 0;
 
     &#register {
-        animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "hidden-text 0.5s forwards;" : "show-text 0.5s forwards;"};
+        animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "hidden-text 0.5s forwards" : "show-text 0.5s forwards"};
     }
 
     &#login{
         margin-top: -68px;
-        animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "show-text2 0.5s forwards;" : "hidden-text2 0.5s forwards;"};
+        animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "show-text2 0.5s forwards" : "hidden-text2 0.5s forwards"};
     }
 
     @keyframes show-text {
@@ -181,7 +181,7 @@ export const LoginRegisterText = styled.h1`
     }
 
     @keyframes show-text2 {
-        from { margin-left: -20px; display: none; opacity: 0; padding-top: 80px; margin-bottom: -40px;}
+        from { margin-left: -20px; display: none; opacity: 0; padding-top: 80px; margin-bottom: -40px; }
         50% { display: none; opacity: 0;}
         to { display: block; opacity: 1; position: relative; padding-top: 80px; margin-bottom: -40px; }
     }
@@ -195,7 +195,7 @@ export const LoginRegisterText = styled.h1`
     @keyframes hidden-text2 {
         from { display: block; z-index: 1;  padding-top: 80px; margin-bottom: -40px; }
         50% { margin-left: -20px; position: relative; opacity: 0; }
-        to { display: none; z-index: -1; position: relative; opacity: 0;  padding-top: 80px; margin-bottom: -40px;} 
+        to { display: none; z-index: -1; position: relative; opacity: 0;  padding-top: 80px; margin-bottom: -40px; } 
     }
 `
 export const Form = styled.form`
@@ -205,16 +205,11 @@ export const Form = styled.form`
     justify-content: flex-start;
     flex-direction: column;
 `
-export const LabelInput = styled.label`
-    width: auto;
-    text-transform: uppercase;
-    color: #888;
-    font-size: 12px;
-    font-weight: bold;
 
-    &#label-input-name {
-        animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "hidden-text 0.5s forwards;" : "show-text 0.5s forwards;"};
-    }
+export const ContentItemForm = styled.div`
+    width: 100%;
+    height: auto;
+    animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "hidden-text 0.5s forwards;" : "show-text 0.5s forwards;"};
 
     @keyframes show-text {
         from { margin-left: -80px; display: none; opacity: 0;}
@@ -227,6 +222,14 @@ export const LabelInput = styled.label`
         50% { margin-left: -80px; position: relative; opacity: 0; }
         to { display: none; z-index: -1; position: relative; opacity: 0; } 
     }
+`
+
+export const LabelInput = styled.label`
+    width: auto;
+    text-transform: uppercase;
+    color: #888;
+    font-size: 12px;
+    font-weight: bold;
 
     &.error-input-name {
         color: ${(props: propsFormLoginSignUp) => props.inputName? "" : "#f00" };
@@ -242,7 +245,7 @@ export const LabelInput = styled.label`
     }
 
     &.shake {
-        animation: shake-label 0.5s forwards;
+        animation: shake-label 0.35s forwards;
     }
 
     @keyframes shake-label {
@@ -297,9 +300,10 @@ export const Input = styled.input`
 
 
     &.check {
-        width: 17px;
-        height: 17px;
+        width: 17px !important;
+        height: 17px !important;
         margin-right: 8px;
+        accent-color: #3F92A7;
     }
 
 
@@ -343,11 +347,11 @@ export const InputBorderContent = styled.div`
 
 export const Text = styled.span`
     width: 100%;
-    color: #888;
+    color: ${(props: propsFormLoginSignUp) => props.inputTerms? "#888" : "#f00"};
     font-size: 10px;
 
     &.service {
-        color: #3F92A7;
+        color: ${(props: propsFormLoginSignUp) => props.inputTerms? "#3F92A7" : "#f00"};
         font-weight: bold;
     }
 `
