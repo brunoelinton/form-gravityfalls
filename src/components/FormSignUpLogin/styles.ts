@@ -5,7 +5,8 @@ import { propsFormLoginSignUp } from ".";
 
 export const MainContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +14,6 @@ export const MainContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  /* padding: 10px 0; */
 `
 export const MainContent = styled.div`
     width: 300px;
@@ -34,10 +34,7 @@ export const MainContent = styled.div`
 
 export const ContentImage = styled.div`
     width: 100%;
-    /* height: 200px; */
     height: auto;
-    
-    
     justify-content: center;
     align-items: center;
     display: none;
@@ -53,7 +50,6 @@ export const ContentImage = styled.div`
 `
 
 export const ContentImgageText = styled.div`
-
     width: 100%;
     height: 100%;
     background-color: transparent;
@@ -63,7 +59,6 @@ export const ContentImgageText = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 
     h2 {
         margin-bottom: 30px;
@@ -98,7 +93,6 @@ export const ContentImgageText = styled.div`
         justify-content: center;
         align-items: center;
         gap: 20px;
-        
     }
 
     img {
@@ -141,7 +135,6 @@ export const LinkForm = styled.div`
     padding: 10px 20px;
     font-family: "Roboto";
     font-size: 16px;
-    
     color: #000;
     transition: 0.3s all ease;
     cursor: pointer;
@@ -209,7 +202,7 @@ export const Form = styled.form`
 export const ContentItemForm = styled.div`
     width: 100%;
     height: auto;
-    animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "hidden-text 0.5s forwards;" : "show-text 0.5s forwards;"};
+    animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "hidden-text 0.5s forwards" : "show-text 0.5s forwards"};
 
     @keyframes show-text {
         from { margin-left: -80px; display: none; opacity: 0;}
@@ -237,7 +230,6 @@ export const LabelInput = styled.label`
 
     &.error-input-email {
         color: ${(props: propsFormLoginSignUp) => props.inputEmail? "" : "#f00" };
-
     }
 
     &.error-input-password {
@@ -272,7 +264,7 @@ export const ContainerInput = styled.div`
     }
 
     &#input-name {
-        animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "hidden-text 0.5s forwards;" : "show-text 0.5s forwards;"};
+        animation: ${(props: propsFormLoginSignUp) => props.isSignIn? "hidden-text 0.5s forwards" : "show-text 0.5s forwards"};
     }
 
     @keyframes show-text {
@@ -297,7 +289,6 @@ export const Input = styled.input`
     font-style: italic;
     font-size: 12px;
     color: #aaa;
-
 
     &.check {
         width: 17px !important;
