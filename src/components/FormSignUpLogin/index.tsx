@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
-import { useState } from 'react'
-
-import FacebookLogo from '../../assets/images/facebook-logo.png'
-import TwitterLogo from '../../assets/images/twitter-logo.png'
-import YouTubeLogo from '../../assets/images/youtube-logo.png'
+import FacebookLogo from '../../assets/images/facebook-logo.png';
+import TwitterLogo from '../../assets/images/twitter-logo.png';
+import YouTubeLogo from '../../assets/images/youtube-logo.png';
 
 import {
   ButtonForm,
@@ -25,7 +24,7 @@ import {
   MainContainer,
   MainContent,
   Text,
-} from './styles'
+} from './styles';
 
 export type propsFormLoginSignUp = {
   isSignIn?: boolean;
@@ -43,6 +42,7 @@ type FormData = {
 }
 
 const FormSignUpLogin = (props: propsFormLoginSignUp) => {
+  const [submit, setSubmit] = useState(false);
   const [isLogin, setLogin] = useState(false);
   const [nameEmpty, setNameEmpty] = useState(true);
   const [emailEmpty, setEmailEmpty] = useState(true);
@@ -64,22 +64,14 @@ const FormSignUpLogin = (props: propsFormLoginSignUp) => {
       setFormData({ ...formData, [dataFormName]: dataFormValue });
     
     if (dataFormName === "terms"){
-      console.log("terms");
-      setFormData({ ...formData, [dataFormName]: event.target.checked })
-      // console.log("dataFormName = " + dataFormName );
-      console.log("dataFormValue = " + event.target.checked  );
-      console.log("formData.Terms = " + formData.terms  );
+      setFormData({ ...formData, [dataFormName]: event.target.checked });
     }
   }
 
-  // const checkTerms = () => {
-  //   if( termsSelect === false) setTermsSelect(true);
-  //   else setTermsSelect(false);
-  
-  // }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log('submit');
 
     formData.name ? setNameEmpty(true) : setNameEmpty(false);
     formData.email ? setEmailEmpty(true) : setEmailEmpty(false);
@@ -87,25 +79,40 @@ const FormSignUpLogin = (props: propsFormLoginSignUp) => {
     formData.terms ? setTermsSelect(true) : setTermsSelect(false);
     
     if (!nameEmpty) {
-      console.log("error")
-      applyShakeError('name')
+      applyShakeError('name');
     }
 
     if (!emailEmpty) {
-      applyShakeError('email')
+      applyShakeError('email');
     }
 
     if (!passwordEmpty) {
-      applyShakeError('password')
+      applyShakeError('password');
     }
+    
   }
 
+  useEffect(() => {
+    if (!nameEmpty) {
+      applyShakeError('name');
+    }
+
+    if (!emailEmpty) {
+      applyShakeError('email');
+    }
+
+    if (!passwordEmpty) {
+      applyShakeError('password');
+    }
+
+  }, [nameEmpty, emailEmpty, passwordEmpty]);
+
   const applyShakeError = (field: string) => {
-    document.querySelector(`.error-input-${field}`)?.classList.add('shake')
+    document.querySelector(`.error-input-${field}`)?.classList.add('shake');
     setTimeout(() => {
-      document.querySelector(`.error-input-${field}`)?.classList.remove('shake')
+      document.querySelector(`.error-input-${field}`)?.classList.remove('shake');
     }, 500)
-  }
+  };
 
   return (
     <MainContainer>
@@ -211,7 +218,7 @@ const FormSignUpLogin = (props: propsFormLoginSignUp) => {
                 <Text inputTerms={termsSelect} className="service">Terms of service</Text>
               </Text>
             </ContainerInput>
-            <ButtonForm type="submit">SignUp</ButtonForm>
+            <ButtonForm type="submit" onClick={submit ? () => {setSubmit(false)} : () => {setSubmit(true)}}>SignUp</ButtonForm>
           </Form>
         </ContentForm>
       </MainContent>
@@ -219,4 +226,4 @@ const FormSignUpLogin = (props: propsFormLoginSignUp) => {
   )
 }
 
-export default FormSignUpLogin
+export default FormSignUpLogin;
